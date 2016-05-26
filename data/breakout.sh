@@ -28,6 +28,7 @@ grep "right guard" working_data.csv   | grep -i "pass" > ./results/right_guard_s
 grep "right tackle" working_data.csv  | grep -i "pass" > ./results/right_tackle_scrambles.csv
 grep "right end" working_data.csv     | grep -i "pass" > ./results/right_end_scrambles.csv
 
+# treat the incomplete and intercepted passes separately
 grep "pass incomplete" working_data.csv                > ./results/incomplete_passes.csv
 grep "pass" working_data.csv | grep -i "intercepted"   > ./results/intercepted_passes.csv
 
@@ -37,7 +38,7 @@ grep "pass right" working_data.csv                     > ./results/passes_right0
 grep "pass short left" working_data.csv                > ./results/passes_short_left0.csv
 grep "pass short middle" working_data.csv              > ./results/passes_short_middle0.csv
 grep "pass short right" working_data.csv               > ./results/passes_short_right0.csv
-grep "pass deep left" working_data.csv                 > ./results/passes_deep_left0.csv
+grep "pass deep left" working_data.csv                 > ./results/passes_deep_left0.csvjkkkjjjjj
 grep "pass deep middle" working_data.csv               > ./results/passes_deep_middle0.csv
 grep "pass deep right" working_data.csv                > ./results/passes_deep_right0.csv
 
@@ -69,4 +70,6 @@ rm working_data*.csv
 rm ./results/passes_*0.csv
 rm ./results/passes_*1.csv
 
-
+#concatenate pass files
+cat ./results/passes_*.csv ./results/intercepted_passes.csv ./results/incomplete_passes.csv ./results/*_scrambles.csv > ./results/total_passes.csv
+cat ./results/*_runs.csv > ./results/total_runs.csv
